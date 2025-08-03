@@ -1,122 +1,226 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Piece Fan Page</title>
-  <style>
-    * {
-      margin: 0;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>One Piece Home</title>
+<style>
+  /* Basic Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #121212;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+  }
+  nav {
+    background: linear-gradient(90deg, #0b0b0b, #1a1a1a);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+    padding: 12px 20px;
+    position: relative;
+    z-index: 100;
+  }
+  .menu-button {
+    width: 35px;
+    height: 28px;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+  }
+  .menu-button span {
+    background: white;
+    display: block;
+    height: 4px;
+    width: 100%;
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    transition: 0.3s ease;
+  }
+  .menu-button span:nth-child(1) { top: 0; }
+  .menu-button span:nth-child(2) { top: 12px; }
+  .menu-button span:nth-child(3) { top: 24px; }
+  .menu-button.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 12px;
+  }
+  .menu-button.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-button.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 12px;
+  }
+  .menu-items {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    text-align: center;
+  }
+  .menu-items.active { max-height: 500px; }
+  .menu-items a {
+    display: block;
+    padding: 12px 0;
+    color: #eee;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    transition: color 0.3s ease;
+  }
+  .menu-items a:hover {
+    color: #f9d71c;
+    text-shadow: 0 0 6px #f9d71c;
+  }
+  .menu-items a.active {
+    color: #f9d71c;
+    font-weight: 700;
+    text-shadow: 0 0 8px #f9d71c;
+    border-bottom: 2px solid #f9d71c;
+    padding-bottom: 4px;
+  }
+  @media (min-width: 700px) {
+    .menu-button { display: none; }
+    .menu-items {
+      max-height: none !important;
+      display: flex;
+      justify-content: center;
+      overflow: visible;
+      text-align: initial;
+    }
+    .menu-items a {
+      border: none;
+      margin: 0 25px;
+      font-size: 18px;
       padding: 0;
-      box-sizing: border-box;
+      line-height: 1;
     }
+    .menu-items a.active {
+      border-bottom: 2px solid #f9d71c;
+      padding-bottom: 6px;
+    }
+  }
+  .container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 0 20px;
+    text-align: center;
+  }
 
-    body {
-      font-family: 'Trebuchet MS', sans-serif;
-      line-height: 1.6;
-      background-image: url('https://wallpapercave.com/wp/wp10661849.jpg');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      color: #fff;
-      padding: 0 20px;
-    }
+  /* Straw Hat Crew */
+  #straw-hat-crew {
+    max-width: 800px;
+    margin: 40px auto;
+    text-align: left;
+    padding: 0 20px;
+  }
+  #straw-hat-crew h2 {
+    font-family: 'Pirata One', cursive;
+    font-size: 2.5em;
+    color: #f9d71c;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #straw-hat-crew ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  #straw-hat-crew li {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+  }
+  #straw-hat-crew strong {
+    color: #f9d71c;
+  }
 
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      z-index: -1;
-    }
-
-    header {
-      background: rgba(13, 71, 161, 0.85);
-      color: #ffdd57;
-      padding: 20px 0;
-      text-align: center;
-      text-shadow: 2px 2px 4px #000;
-      font-family: 'Georgia', serif;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-    }
-
-    main {
-      padding: 30px 0;
-    }
-
-    .intro {
-      background-color: rgba(255, 255, 255, 0.9);
-      color: #333;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .intro h2 {
-      font-size: 2rem;
-      color: #d84315;
-      margin-bottom: 15px;
-      border-bottom: 3px solid #d84315;
-      display: inline-block;
-    }
-
-    .intro p {
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-      text-align: justify;
-    }
-
-    .intro img {
-      width: 100%;
-      max-width: 700px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    footer {
-      text-align: center;
-      padding: 15px 0;
-      margin-top: 40px;
-      background: rgba(13, 71, 161, 0.85);
-      color: #ffdd57;
-      font-size: 0.95rem;
-    }
-  </style>
+  /* Journey section */
+  #journey {
+    max-width: 800px;
+    margin: 40px auto 80px auto;
+    text-align: left;
+    padding: 0 20px;
+  }
+  #journey h2 {
+    font-family: 'Pirata One', cursive;
+    font-size: 2.5em;
+    color: #f9d71c;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  #journey p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #eee;
+    margin-bottom: 15px;
+  }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Pirata+One&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <header>
-    <h1>Welcome to the World of One Piece</h1>
-  </header>
+  <nav>
+    <div class="menu-button" id="menu-button" aria-label="Toggle menu" role="button" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="menu-items" id="menu-items">
+      <a href="index.html" class="active">Home</a>
+      <a href="devil-fruit.html">Devil Fruit</a>
+      <a href="character.html">Character</a>
+      <a href="story.html">Story</a>
+    </div>
+  </nav>
 
-  <main>
-    <section class="intro">
-      <!-- ✅ Confirmed One Piece Crew Image -->
-      <img src="https://i.pinimg.com/originals/88/b4/35/88b4352c4e46fc8a40d6f4ff887c11f4.jpg" alt="Straw Hat Pirates" />
+  <div class="container">
+    <h1>Welcome to the One Piece Site</h1>
+    <p>Meet the legendary Straw Hat Crew who sail the Grand Line!</p>
 
-      <h2>About One Piece</h2>
+    <section id="straw-hat-crew">
+      <h2>The Straw Hat Crew</h2>
+      <ul>
+        <li><strong>Monkey D. Luffy</strong> – Captain with the power of the Gum-Gum Fruit.</li>
+        <li><strong>Roronoa Zoro</strong> – Master swordsman aiming to be the best.</li>
+        <li><strong>Nami</strong> – Skilled navigator and weather expert.</li>
+        <li><strong>Usopp</strong> – Sharpshooter and creative inventor.</li>
+        <li><strong>Sanji</strong> – Talented cook and fighter with powerful kicks.</li>
+        <li><strong>Tony Tony Chopper</strong> – Doctor and reindeer with human powers.</li>
+        <li><strong>Nico Robin</strong> – Archaeologist with knowledge of ancient history.</li>
+        <li><strong>Franky</strong> – Cyborg shipwright who built the Thousand Sunny.</li>
+        <li><strong>Brook</strong> – Musician and swordsman who returned from the dead.</li>
+        <li><strong>Jinbe</strong> – Fish-man helmsman and loyal ally.</li>
+      </ul>
+    </section>
+
+    <section id="journey">
+      <h2>The Journey of the Straw Hat Crew</h2>
       <p>
-        One Piece is a legendary Japanese anime and manga series created by Eiichiro Oda. It follows the journey of Monkey D. Luffy, a young pirate with a dream to become the Pirate King by finding the mysterious treasure known as the "One Piece."
+        After setting sail from their hometown, the Straw Hat Pirates began their grand adventure across the treacherous Grand Line, encountering powerful enemies, making new friends, and uncovering the mysteries of the world.
       </p>
       <p>
-        Luffy and his crew, the Straw Hat Pirates, travel across vast oceans, face powerful enemies, and uncover secrets of the world while building deep friendships. With its unique characters, epic storytelling, and adventurous spirit, One Piece has become one of the most beloved series in the world.
+        Each crew member pursues their personal dreams while supporting each other through countless battles and challenges. From battling the Marines and rival pirates to exploring strange islands and ancient ruins, their bond grows stronger with every adventure.
       </p>
       <p>
-        Whether you're a long-time fan or new to the Grand Line, this site is your gateway into the incredible universe of One Piece!
+        Their journey is full of laughter, tears, and unwavering determination — a testament to the spirit of freedom and friendship that defines One Piece.
+      </p>
+      <p>
+        As they move closer to the legendary treasure “One Piece,” the Straw Hats face more dangerous foes and uncover dark secrets that could change the fate of the world forever.
       </p>
     </section>
-  </main>
+  </div>
 
-  <footer>
-    <p>© 2025 One Piece Fan Site. All rights reserved.</p>
-  </footer>
+  <script>
+    const menuButton = document.getElementById('menu-button');
+    const menuItems = document.getElementById('menu-items');
+    menuButton.addEventListener('click', () => {
+      menuButton.classList.toggle('active');
+      menuItems.classList.toggle('active');
+    });
+    menuButton.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        menuButton.click();
+      }
+    });
+  </script>
 </body>
 </html>
