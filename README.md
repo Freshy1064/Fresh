@@ -14,7 +14,7 @@
   <a href="onepiece2.html"style="font-size:30px; 
     color:white;
     background-color:red;
-    border-radius:9999px;
+    border-radius:999px;
     padding: 5px 10px;
     text-decoration:none;"> Start</a>
   </font>
