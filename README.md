@@ -165,7 +165,7 @@
     </div>
     <div class="menu-items" id="menu-items">
       <a href="index.html" class="active">Home</a>
-      <a href="devil-fruit.html">Devil Fruit</a>
+      <a href="https://freshy1064.github.io/One-pieceI/">Devil Fruit</a>
       <a href="character.html">Character</a>
       <a href="story.html">Story</a>
     </div>
